@@ -62,18 +62,46 @@ public class BinarySearchTree {
         return null;
     }
 
-    public boolean deleteNode(int data) {
-        return false;
+    public boolean deleteNode(int value) {
+        boolean searched = false;
+
+        Node currParentNode = this.head;
+        Node currNode = this.head;
+
+        //case 1: 노드가 없을때
+        if (this.head == null) {
+            return false;
+        }
+        else{
+            //case 2: 노드가 하나일 때
+            if (this.head.value == value && this.head.left == null & head.right == null) {
+                this.head = null;
+                return true;
+            }
+            //case 3
+            while (currNode != null) {
+                if (currNode.value == value) {
+                    searched = true;
+                    break;
+                } else if (value < currNode.value) {
+                    currParentNode = currNode;
+                    currNode = currNode.left;
+                } else {
+                    currParentNode = currNode;
+                    currNode = currNode.right;
+                }
+            }
+            if (!searched) {
+                return false;
+            }
+        }
+        //노드 찾음
+        //case 1: 삭제할 노드가 leaf node 인 경우
+        return true;
     }
     public static void main(String[] args) {
         BinarySearchTree myTree = new BinarySearchTree();
-        myTree.insertNode(5);
-        myTree.insertNode(3);
-        myTree.insertNode(2);
-        myTree.insertNode(1);
 
-        Node node = myTree.searchNode(2);
-        System.out.println(node.left.value);
 
     }
 
